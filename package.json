@@ -18,8 +18,8 @@
   "author": "Lev Gelfenbuim <lev@webtestingwithcypress.com>",
   "license": "MIT",
   "dependencies": {
-    "googleapis": "^109.0.1",
-    "open": "^8.4.0",
+    "googleapis": "^144.0.0",
+    "open": "^10.1.0",
     "server-destroy": "^1.0.1"
   },
   "repository": {
@@ -31,6 +31,6 @@
   },
   "homepage": "https://github.com/levz0r/gmail-tester",
   "devDependencies": {
-    "jasmine": "^4.0.2"
+    "jasmine": "^5.5.0"
   }
 }

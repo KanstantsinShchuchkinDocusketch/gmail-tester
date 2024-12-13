@@ -1,5 +1,5 @@
 const gmail = require("./gmail");
-const tokenStore = require("./token-store")
+const tokenStore = require("./token-store");
 
 function _get_header(name, headers) {
   const found = headers.find(h => h.name === name);
@@ -46,6 +46,7 @@ async function _get_recent_email(credentials, token, options = {}) {
       from: _get_header("From", gmail_email.payload.headers),
       subject: _get_header("Subject", gmail_email.payload.headers),
       receiver: _get_header("Delivered-To", gmail_email.payload.headers),
+      recipients: _get_header("To", gmail_email.payload.headers),
       date: new Date(+gmail_email["internalDate"])
     };
     if (options.include_body) {
@@ -89,7 +90,10 @@ async function _get_recent_email(credentials, token, options = {}) {
     }
 
     if (options.include_attachments) {
-      email.attachments = await gmail.get_email_attachments(oAuth2Client, gmail_email);
+      email.attachments = await gmail.get_email_attachments(
+        oAuth2Client,
+        gmail_email
+      );
     }
     emails.push(email);
   }
@@ -105,11 +109,7 @@ async function __check_inbox(credentials, token, options = {}) {
     let found_emails = null;
     let done_waiting_time = 0;
     do {
-      const emails = await _get_recent_email(
-        credentials,
-        token,
-        options
-      );
+      const emails = await _get_recent_email(credentials, token, options);
       if (emails.length > 0) {
         console.log(`[gmail] Found!`);
         found_emails = emails;

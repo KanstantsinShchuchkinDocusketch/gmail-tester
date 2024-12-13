@@ -1,14 +1,14 @@
 declare module "gmail-tester" {
-  
   export interface Attachment {
     filename: string;
     data: string;
     mimeType: string;
   }
-  
+
   export interface Email {
     from: string;
     receiver: string;
+    recipients: Array<string>;
     subject: string;
     date: Date;
     body?: {
@@ -41,15 +41,15 @@ declare module "gmail-tester" {
   }
 
   export interface Credentials {
-    installed : {
-      client_id: string,
-      project_id: string,
-      auth_uri: string,
-      token_uri: string,
-      auth_provider_x509_cert_url: string,
-      client_secret: string,
-      redirect_uris: string[]
-    }
+    installed: {
+      client_id: string;
+      project_id: string;
+      auth_uri: string;
+      token_uri: string;
+      auth_provider_x509_cert_url: string;
+      client_secret: string;
+      redirect_uris: string[];
+    };
   }
 
   export function check_inbox(
@@ -66,6 +66,6 @@ declare module "gmail-tester" {
 
   export function refresh_access_token(
     credentials: string | Credentials,
-    token: string | Record<string, unknown>,
+    token: string | Record<string, unknown>
   ): Promise<void>;
 }
