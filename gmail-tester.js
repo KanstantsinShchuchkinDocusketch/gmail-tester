@@ -46,7 +46,7 @@ async function _get_recent_email(credentials, token, options = {}) {
       from: _get_header("From", gmail_email.payload.headers),
       subject: _get_header("Subject", gmail_email.payload.headers),
       receiver: _get_header("Delivered-To", gmail_email.payload.headers),
-      recipients: _get_header("To", gmail_email.payload.headers),
+      recipients: _get_header("To", gmail_email.payload.headers).split(", "),
       date: new Date(+gmail_email["internalDate"])
     };
     if (options.include_body) {
