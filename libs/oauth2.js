@@ -17,7 +17,7 @@ const fs = require("fs");
 const path = require("path");
 const http = require("http");
 const url = require("url");
-const opn = require("open");
+const open = require("open");
 const destroyer = require("server-destroy");
 
 /**
@@ -59,7 +59,7 @@ async function authenticate(oauth2Client, scopes, tokensFile) {
         })
         .listen(80, () => {
           // open the browser to the authorize url to start the workflow
-          opn(authorizeUrl, { wait: false }).then(cp => cp.unref());
+          open.default(authorizeUrl, { wait: false }).then(cp => cp.unref());
         });
       destroyer(server);
     } else {
