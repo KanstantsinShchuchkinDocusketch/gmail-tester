@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "googleapis": "^144.0.0",
-    "open": "^10.1.0",
+    "open": "^8.4.2",
     "server-destroy": "^1.0.1"
   },
   "repository": {
