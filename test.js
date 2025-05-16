@@ -1,19 +1,11 @@
 const gmail_tester = require("./gmail-tester");
 
 (async () => {
-  const inbox = await gmail_tester.check_inbox("credentials.json", "token.json", {
-    subject: "TSLA: Tesla: Ignore",
+  const singleReceiver = await gmail_tester.get_messages("credentials.json", "token.json", {
+    subject: "Estimate request for the project 53853 created",
     from: "",
-    to: "",
-    wait_time_sec: 10,
-    max_wait_time_sec: 40,
-    include_body: true
+    to: "gmail.api+test.owner.express-contract@docusketch.com",
+    include_body: false
   });
-
-  const msgs = await gmail_tester.get_messages("credentials.json", "token.json", {
-    subject: "TSLA: Tesla: Ignore",
-    from: "",
-    to: "",
-    include_body: true
-  });
+  console.log(singleReceiver)
 })();
