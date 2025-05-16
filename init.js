@@ -8,6 +8,7 @@ const gmail = require("./gmail-tester");
   await gmail.check_inbox(process.argv[2], process.argv[3], {
     subject: "",
     from: "",
-    to: process.argv[4]
+    to: process.argv[4],
+    after: new Date().setHours(0, 0, 0, 0), 
   });
 })();
